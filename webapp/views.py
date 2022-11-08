@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from webapp.models import Task, STATUS_CHOICES
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404
 # Create your views here.
 
 def index_view(request, *args, **kwargs):
@@ -21,11 +21,17 @@ def create_task(request, *args, **kwargs):
         content = request.POST.get('content')
         new_task = Task.objects.create(title=title, status=status, content=content, deadline=deadline)
         #return render(request, 'task_view.html', {'task': new_task})
-        return HttpResponseRedirect(f'/task/?id={new_task.pk}')
+        return HttpResponseRedirect(f'/task/{new_task.pk}/')
 
-def task_view(request, *args, **kwargs):
-    task_id = request.GET.get('id')
-    task = Task.objects.get(pk=task_id)
+def task_view(request, pk, *args, **kwargs):
+#    task_id = kwargs.get('pk')
+#    task = Task.objects.get(pk=task_id)
+#    try:
+ #       task = Task.objects.get(pk=pk)
+  #  except Task.DoesNotExist:
+#        return HttpResponseNotFound('Not Found')
+  #      raise Http404
+    task = get_object_or_404(Task, pk=pk)
     context = {'task': task}
     return render(request, 'task_view.html', context)
 
