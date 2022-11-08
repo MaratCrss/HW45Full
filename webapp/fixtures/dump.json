@@ -61,6 +61,66 @@ Tracking file by folder pattern:  migrations
   }
 },
 {
+  "model": "webapp.task",
+  "pk": 10,
+  "fields": {
+    "title": "Task 9",
+    "status": "in_progress",
+    "deadline": "2022-02-23",
+    "content": "9999999"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 11,
+  "fields": {
+    "title": "@@@@",
+    "status": "in_progress",
+    "deadline": "2022-12-31",
+    "content": "asdad"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 12,
+  "fields": {
+    "title": "Task 10",
+    "status": "done",
+    "deadline": "2024-03-03",
+    "content": "10 10 10 10 10"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 13,
+  "fields": {
+    "title": "Task 11",
+    "status": "new",
+    "deadline": "2023-03-13",
+    "content": "MMMMMMM"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 15,
+  "fields": {
+    "title": "123",
+    "status": "in_progress",
+    "deadline": "2022-12-22",
+    "content": "1313"
+  }
+},
+{
+  "model": "webapp.task",
+  "pk": 16,
+  "fields": {
+    "title": "13213",
+    "status": "in_progress",
+    "deadline": "2033-10-20",
+    "content": "asfaf"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {

@@ -8,7 +8,7 @@
     <title>Task view</title>
 </head>
 <body>
-<a href="/">Home</a>
+<a href="{% url 'index' %}">Home</a>
 
 <h4>Nazvanie: {{ task.title }}</h4>
 <p>Status: {{ task.get_status_display }}</p>
