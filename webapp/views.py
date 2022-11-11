@@ -28,13 +28,6 @@ def create_task(request, *args, **kwargs):
 
 
 def task_view(request, pk, *args, **kwargs):
-#    task_id = kwargs.get('pk')
-#    task = Task.objects.get(pk=task_id)
-#    try:
- #       task = Task.objects.get(pk=pk)
-  #  except Task.DoesNotExist:
-#        return HttpResponseNotFound('Not Found')
-  #      raise Http404
     task = get_object_or_404(Task, pk=pk)
     context = {'task': task}
     return render(request, 'task_view.html', context)
