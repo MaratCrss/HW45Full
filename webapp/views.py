@@ -18,12 +18,12 @@ def create_task(request, *args, **kwargs):
     elif request.method == "POST":
         title = request.POST.get('title')
         status = request.POST.get('status')
-        deadline = request.POST.get('deadline')
         content = request.POST.get('content')
+        deadline = request.POST.get('deadline')
+        if not deadline:
+            deadline = None
         new_task = Task.objects.create(title=title, status=status, content=content, deadline=deadline)
-        #return render(request, 'task_view.html', {'task': new_task})
-       # url = reverse('task_view', kwargs={'pk':new_task.pk})
-       # return HttpResponseRedirect(url)
+
     return redirect('task_view', pk=new_task.pk)
 
 
