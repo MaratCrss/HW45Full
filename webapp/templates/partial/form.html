@@ -1,0 +1,24 @@
+{% csrf_token %}
+
+<label class="form-label">Status:</label>
+        <select class="form-select" name="status">
+            {% for value, status in statuses %}
+                <option
+                    {% if task.status == value %}
+                        selected
+                    {% endif %}
+                        value="{{ value }}">{{ status }}</option>
+            {% endfor %}
+        </select>
+        <br/>
+        <label class="form-label">Title:</label>
+        <input class="form-control" type="text" name="title" value="{{ task.title }}" required>
+        <br/>
+        <label class="form-label">Content:</label>
+        <textarea class="form-control" name="content">{{ task.content }}</textarea>
+        <br/>
+         <label class="form-label">Deadline:</label>
+        <input class="form-control" type="text" name="deadline" value="{{ task.deadline }}">
+        <br/>
+    <input class="btn btn-success" type="submit" value="{{ button_text }}">
+</html>
