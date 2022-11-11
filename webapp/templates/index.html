@@ -8,15 +8,15 @@
     <title>To-do List</title>
 </head>
 <body>
-<a href="/task/add/">Create Task ( + )</a>
+<a href="{% url 'task_add' %}">Create Task ( + )</a>
     <h1>To-Do List</h1>
 
     {% for task in tacks %}
-        <h4>Nazvanie: <a href="/task/{{ task.pk }}/">{{ task.title }}</a></h4>
+        <h4>Nazvanie: <a href="{% url 'task_view' task.pk %}/">{{ task.title }}</a></h4>
         <p>Status: {{ task.get_status_display }}</p>
         <p>Data vypolneniya: {{ task.deadline|date:"d F Y"|default:"-" }}</p>
         <p>Opisanie: {{ task.content }}</p>
-        <form action="/?id={{ task.id }}" method="POST">
+        <form action="{% url 'index' %}?id={{ task.id }}" method="POST">
         {% csrf_token %}
             <input type="submit" value="delete">
         </form>
