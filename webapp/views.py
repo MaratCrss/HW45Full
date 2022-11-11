@@ -9,6 +9,7 @@ def index_view(request, *args, **kwargs):
         task_id = request.GET.get('id')
         task = Task.objects.get(id=task_id)
         task.delete()
+        return redirect('index')
     task = Task.objects.all()
     return render(request, 'index.html', {'tacks': task})
 
@@ -32,10 +33,10 @@ def task_view(request, pk, *args, **kwargs):
     context = {'task': task}
     return render(request, 'task_view.html', context)
 
-def task_update_view (request, pk):
+def task_update_view(request, pk):
     task = get_object_or_404(Task, pk=pk)
     if request.method == "GET":
-        return request(request, 'task_update.html', {'task': task})
+        return render(request, 'task_update.html', {'task': task})
     elif request.method == "POST":
         task.title = request.POST.get('title')
         task.status = request.POST.get('status')
@@ -43,3 +44,6 @@ def task_update_view (request, pk):
         task.deadline = request.POST.get('deadline')
         task.save()
         return redirect('task_view', pk=task.pk)
+
+
+

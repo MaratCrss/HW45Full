@@ -1,20 +1,29 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Task view</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block nav %}
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'task_add' %}">Create Task ( + )</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'task_update' task.pk %}">Update Task</a>
+    </li>
+
+{% endblock %}
 <a href="{% url 'index' %}">Home</a>
 
-<h4>Nazvanie: {{ task.title }}</h4>
-<p>Status: {{ task.get_status_display }}</p>
-<p>Data vypolneniya: {{ task.deadline|default:"-" }}</p>
-<p style="white-space: pre-wrap">Opisanie: {{ task.content }}</p>
-<hr>
 
-</body>
-</html>
+{% block content %}
+    <div class="card text-center">
+        <div class="card-header">
+            Nazvanie: {{ task.title }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Status: {{ task.get_status_display }}</h5>
+            <p class="card-text" style="white-space: pre-wrap">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div class="card-footer text-muted">
+            Data vypolneniya: {{ task.deadline|default:"-" }}
+        </div>
+    </div>
+{% endblock %}

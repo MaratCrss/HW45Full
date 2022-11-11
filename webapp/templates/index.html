@@ -1,27 +1,29 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>To-do List</title>
-</head>
-<body>
-<a href="{% url 'task_add' %}">Create Task ( + )</a>
-    <h1>To-Do List</h1>
+{% extends 'base.html' %}
 
-    {% for task in tacks %}
-        <h4>Nazvanie: <a href="{% url 'task_view' task.pk %}/">{{ task.title }}</a></h4>
-        <p>Status: {{ task.get_status_display }}</p>
-        <p>Data vypolneniya: {{ task.deadline|date:"d F Y"|default:"-" }}</p>
-        <p>Opisanie: {{ task.content }}</p>
-        <form action="{% url 'index' %}?id={{ task.id }}" method="POST">
-        {% csrf_token %}
-            <input type="submit" value="delete">
-        </form>
-        <hr>
-    {% endfor %}
+    {% block nav %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'task_add' %}">Create Task ( + )</a>
+        </li>
+    {% endblock %}
 
-</body>
-</html>
+    {% block content %}
+
+        <h1>To-Do List</h1>
+        <div class="row rows-3">
+            {% for task in tacks %}
+                <div class="col">
+                    <div class="card col">
+                        <h5 class="card-header">Nazvanie: <a href="{% url 'task_view' task.pk %}">{{ task.title }}</a></h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Status: {{ task.get_status_display }}</h5>
+                            <p class="card-text">Data vypolneniya: {{ task.deadline|date:"d F Y"|default:"-" }}</p>
+                            <form action="{% url 'index' %}?id={{ task.id }}" method="POST">
+                                {% csrf_token %}
+                                <input type="submit" value="delete">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endblock %}
