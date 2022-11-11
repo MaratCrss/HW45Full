@@ -13,7 +13,7 @@
 <h4>Nazvanie: {{ task.title }}</h4>
 <p>Status: {{ task.get_status_display }}</p>
 <p>Data vypolneniya: {{ task.deadline|default:"-" }}</p>
-<p>Opisanie: {{ task.content }}</p>
+<p style="white-space: pre-wrap">Opisanie: {{ task.content }}</p>
 <hr>
 
 </body>
