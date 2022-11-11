@@ -1,29 +1,27 @@
+
 {% extends 'base.html' %}
 {% block nav %}
-
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'task_add' %}">Create Task ( + )</a>
-    </li>
+          <a class="nav-link" aria-current="page" href="{% url 'task_add' %}">Add Task</a>
+        </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'task_update' task.pk %}">Update Task</a>
-    </li>
-
+          <a class="nav-link" aria-current="page" href="{% url 'task_update' task.pk %}">Update Task</a>
+        </li>
+    <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'task_delete' task.pk %}">Delete Task</a>
+        </li>
 {% endblock %}
-<a href="{% url 'index' %}">Home</a>
-
-
 {% block content %}
     <div class="card text-center">
-        <div class="card-header">
+          <div class="card-header">
             Nazvanie: {{ task.title }}
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Status: {{ task.get_status_display }}</h5>
-            <p class="card-text" style="white-space: pre-wrap">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        <div class="card-footer text-muted">
-            Data vypolneniya: {{ task.deadline|default:"-" }}
-        </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Статус: {{ task.get_status_display }}</h5>
+            <p class="card-text" style="white-space: pre-wrap">{{ task.content }} </p>
+          </div>
+          <div class="card-footer text-muted">
+            Deadline: {{ task.deadline }}
+          </div>
     </div>
 {% endblock %}
