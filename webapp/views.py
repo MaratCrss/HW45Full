@@ -41,8 +41,9 @@ def task_update_view(request, pk):
         task.title = request.POST.get('title')
         task.status = request.POST.get('status')
         task.content = request.POST.get('content')
+        if task.deadline == "None":
+            task.deadline = None
         task.deadline = request.POST.get('deadline')
-
         task.save()
         return redirect('task_view', pk=task.pk)
 
